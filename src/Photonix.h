@@ -18,6 +18,7 @@ namespace Qybercom {
 				unsigned int _length;
 				String _name;
 				bool _initialized;
+				unsigned int _sectors;
 
 				void _init(unsigned short pin, unsigned int length, String name);
 
@@ -30,13 +31,20 @@ namespace Qybercom {
 				String Name();
 
 				Photonix* Brightness(int value);
+
 				Photonix* Set(unsigned int i, int r, int g, int b);
 				Photonix* Show();
 				Photonix* SetAndShow(unsigned int i, int r, int g, int b);
+
 				Photonix* Fill(int r, int g, int b);
 				Photonix* FillAndShow(int r, int g, int b);
 				Photonix* Clear();
 				Photonix* Lerp(int i, int r1, int g1, int b1, int r2, int g2, int b2, int step, int max, bool ret);
+
+				Photonix* Sectors(unsigned int count);
+				Photonix* SectorFill(unsigned int sector, int r, int g, int b, bool clearOther = false);
+				Photonix* SectorFillAndShow(unsigned int sector, int r, int g, int b, bool clearOther = false);
+				Photonix* SectorClear(unsigned int sector);
 
 				bool Initialized();
 		};

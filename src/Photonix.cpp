@@ -76,19 +76,45 @@ Photonix* Photonix::Fill (int r, int g, int b) {
 }
 
 Photonix* Photonix::FillAndShow (int r, int g, int b) {
-	unsigned int i = 0;
-
-	while (i < this->_length) {
-		this->Set(i, r, g, b);
-
-		i++;
-	}
-
-	return this->Show();
+	return this->Fill(r, g, b)->Show();
 }
 
 Photonix* Photonix::Clear () {
 	return this->FillAndShow(0, 0, 0);
+}
+
+Photonix* Photonix::Sectors (unsigned int count) {
+	this->_sectors = count;
+
+	return this;
+}
+
+Photonix* Photonix::SectorFill (unsigned int sector, int r, int g, int b, bool clearOther) {
+	int end = this->_length;//this->_ledStart + 45;
+	int i = 0;//this->_ledStart;
+	int sectorSize = (end - 0/*this->_ledStart*/) / this->_sectors;
+	int sectorStart = 0/*this->_ledStart*/ + ((sector - 1) * sectorSize);
+	int sectorEnd = sectorStart + sectorSize;
+
+	while (i < end) {
+		if (i >= sectorStart && i < sectorEnd) this->Set(i, r, g, b);
+		else {
+			if (clearOther)
+				this->Set(i, 0, 0, 0);
+		}
+
+		i++;
+	}
+
+	return this;
+}
+
+Photonix* Photonix::SectorFillAndShow (unsigned int sector, int r, int g, int b, bool clearOther) {
+	return this->SectorFill(sector, r, g, b)->Show();
+}
+
+Photonix* Photonix::SectorClear (unsigned int sector) {
+	return this->SectorFillAndShow(sector, 0, 0, 0);
 }
 
 Photonix* Photonix::Lerp (int i, int r1, int g1, int b1, int r2, int g2, int b2, int step, int max, bool ret) {
