@@ -42,8 +42,8 @@ namespace Qybercom {
 				Photonix* Lerp(int i, int r1, int g1, int b1, int r2, int g2, int b2, int step, int max, bool ret);
 
 				Photonix* Sectors(unsigned int count);
-				Photonix* SectorFill(unsigned int sector, int r, int g, int b, bool clearOther = false);
-				Photonix* SectorFillAndShow(unsigned int sector, int r, int g, int b, bool clearOther = false);
+				Photonix* SectorFill(unsigned int sector, int r, int g, int b, bool clearOther = false, int start = -1, int end = -1);
+				Photonix* SectorFillAndShow(unsigned int sector, int r, int g, int b, bool clearOther = false, int start = -1, int end = -1);
 				Photonix* SectorClear(unsigned int sector);
 
 				bool Initialized();

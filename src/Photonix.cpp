@@ -89,14 +89,15 @@ Photonix* Photonix::Sectors (unsigned int count) {
 	return this;
 }
 
-Photonix* Photonix::SectorFill (unsigned int sector, int r, int g, int b, bool clearOther) {
-	int end = this->_length;//this->_ledStart + 45;
-	int i = 0;//this->_ledStart;
-	int sectorSize = (end - 0/*this->_ledStart*/) / this->_sectors;
-	int sectorStart = 0/*this->_ledStart*/ + ((sector - 1) * sectorSize);
+Photonix* Photonix::SectorFill (unsigned int sector, int r, int g, int b, bool clearOther, int start, int end) {
+	int s = start < 0 ? 0 : start;//this->_ledStart;
+	int e = end < 0 ? this->_length : e;//this->_ledStart + 45;
+	int i = s;
+	int sectorSize = (e - s/*0*//*this->_ledStart*/) / this->_sectors;
+	int sectorStart = s/*0*//*this->_ledStart*/ + ((sector - 1) * sectorSize);
 	int sectorEnd = sectorStart + sectorSize;
 
-	while (i < end) {
+	while (i < e) {
 		if (i >= sectorStart && i < sectorEnd) this->Set(i, r, g, b);
 		else {
 			if (clearOther)
@@ -109,8 +110,8 @@ Photonix* Photonix::SectorFill (unsigned int sector, int r, int g, int b, bool c
 	return this;
 }
 
-Photonix* Photonix::SectorFillAndShow (unsigned int sector, int r, int g, int b, bool clearOther) {
-	return this->SectorFill(sector, r, g, b)->Show();
+Photonix* Photonix::SectorFillAndShow (unsigned int sector, int r, int g, int b, bool clearOther, int start, int end) {
+	return this->SectorFill(sector, r, g, b, clearOther, start, end)->Show();
 }
 
 Photonix* Photonix::SectorClear (unsigned int sector) {
