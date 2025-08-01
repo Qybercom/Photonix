@@ -94,7 +94,7 @@ Photonix* Photonix::SectorFill (unsigned int sector, int r, int g, int b, bool c
 	int e = end < 0 ? this->_length : end;//this->_ledStart + 45;
 	int i = s;
 	int sectorSize = (e - s/*0*//*this->_ledStart*/) / (this->_sectors / (areas < 1 ? 1 : areas));
-	int sectorStart = s/*0*//*this->_ledStart*/ + ((sector - 1) * sectorSize);
+	int sectorStart = 0/*s*//*0*//*this->_ledStart*/ + ((sector - 1) * sectorSize);
 	int sectorEnd = sectorStart + sectorSize;
 
 	//Serial.println("[led] " + String(sector) + String(" ") + String(s) + String(" ") + String(e) + String(" ") + String(sectorSize) + String(" ") + String(sectorStart) + String(" ") + String(sectorEnd));
