@@ -47,6 +47,8 @@ namespace Qybercom {
 				Photonix* SectorClear(unsigned int sector, int start = -1, int end = -1, int areas = -1);
 
 				bool Initialized();
+
+				void AnimationRainbow(unsigned long cursor, int r = 5, int g = 255, int b = 150);
 		};
 	}
 }

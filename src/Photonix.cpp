@@ -156,3 +156,13 @@ bool Photonix::Initialized () {
 
 	return out;
 }
+
+void Photonix::AnimationRainbow (unsigned long cursor, int r, int g, int b) {
+	unsigned int i = 0;
+
+	while (i < this->_length) {
+		this->_led[i] = CHSV((cursor + i) * r, g, b);
+
+		i++;
+	}
+}
