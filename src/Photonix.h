@@ -49,6 +49,7 @@ namespace Qybercom {
 				bool Initialized();
 
 				void AnimationRainbow(unsigned long cursor, int r = 5, int g = 255, int b = 150);
+				void AnimationFill(unsigned long cursor, int r, int g, int b, long offset = -1, unsigned long batch = 1);
 		};
 	}
 }
