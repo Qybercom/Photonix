@@ -167,22 +167,24 @@ void Photonix::AnimationRainbow (unsigned long cursor, int r, int g, int b) {
 	}
 }
 
-void Photonix::AnimationFill (unsigned long cursor, int r, int g, int b, long offset, unsigned long batch) {
-	long oe = offset < 0 ? (this->_length / 2) : offset;
-	long ob = this->_length % 2 == 0 ? oe - 1 : oe;
+void Photonix::AnimationFill (unsigned long cursor, int r, int g, int b, long offset, long batch) {
+	long ob = offset < 0 ? (this->_length / 2) : offset;
+	long oe = this->_length % 2 == 0 ? ob - 1 : ob;
 
 	unsigned long i = 0;
-	long oei = 0;
 	long obi = 0;
+	long oei = 0;
+	bool neg = batch < 0;
+	unsigned long _b = neg ? -batch : batch;
 
-	while (i < batch) {
-		oei = oe + cursor + i;
-		if (oei >= 0 && oei < this->_length)
-			this->Set(oei, r, g, b);
-
-		obi = ob - cursor - i;
+	while (i < _b) {
+		obi = neg ? (0 + cursor + i) : (ob - cursor - i);
 		if (obi >= 0 && obi < this->_length)
 			this->Set(obi, r, g, b);
+
+		oei = neg ? (this->_length - cursor - i) : (oe + cursor + i);
+		if (oei >= 0 && oei < this->_length)
+			this->Set(oei, r, g, b);
 
 		//Serial.println("[Photonix:AnimationFill] oei:" + String(oei) + " obi:" + String(obi));
 
