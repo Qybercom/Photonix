@@ -6,10 +6,20 @@
 namespace Qybercom {
 	namespace Photonix {
 		#define FLC(n) case n: FastLED.addLeds<WS2812, n, GRB>(this->_led, this->_length); break;
+
+		#if defined(ESP32)
 		#define FLC_PINS \
 		    FLC(0)  FLC(1)  FLC(2)  FLC(3)  FLC(4)  FLC(5) \
 			FLC(11) FLC(12) FLC(13) FLC(14) FLC(15) FLC(16) FLC(17) FLC(18) FLC(19) \
 			FLC(21) FLC(22) FLC(23) FLC(25) FLC(26) FLC(27) FLC(32) FLC(33)
+		#elif defined(ESP8266)
+		#define FLC_PINS \
+		    FLC(0)  FLC(1)  FLC(2)  FLC(3)  FLC(4)  FLC(5) \
+			FLC(12) FLC(13) FLC(14) FLC(15) FLC(16)
+		#elif defined(AVR)
+			FLC(2) FLC(3) FLC(4) FLC(5) FLC(6) FLC(7) \
+			FLC(8) FLC(9) FLC(10) FLC(11) FLC(12) FLC(13)
+		#endif
 
 		class Photonix {
 			private:
