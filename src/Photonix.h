@@ -17,6 +17,7 @@ namespace Qybercom {
 		    FLC(0)  FLC(1)  FLC(2)  FLC(3)  FLC(4)  FLC(5) \
 			FLC(12) FLC(13) FLC(14) FLC(15) FLC(16)
 		#elif defined(AVR)
+		#define FLC_PINS \
 			FLC(2) FLC(3) FLC(4) FLC(5) FLC(6) FLC(7) \
 			FLC(8) FLC(9) FLC(10) FLC(11) FLC(12) FLC(13)
 		#endif
