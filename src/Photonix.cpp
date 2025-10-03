@@ -10,6 +10,7 @@ void Photonix::_init (unsigned short pin, unsigned int length, String name) {
 	this->_length = length;
 	this->_name = name;
 	this->_initialized = false;
+	this->_sectors = 0;
 
 	this->_led = (CRGB*)malloc(sizeof(CRGB) * this->_length);
     switch (pin) {
